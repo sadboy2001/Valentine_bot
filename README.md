@@ -1,38 +1,7 @@
 # 📚 Документация проекта "Valentine Bot"
 
 ## Telegram бот для отправки валентинок
-
----
-
-# 📋 Оглавление
-
-1. [Общее описание](#1-общее-описание)
-2. [Технологии и зависимости](#2-технологии-и-зависимости)
-3. [Структура проекта](#3-структура-проекта)
-4. [Установка и настройка](#4-установка-и-настройка)
-5. [Конфигурация](#5-конфигурация)
-6. [Архитектура](#6-архитектура)
-7. [Описание модулей](#7-описание-модулей)
-8. [База данных (JSON)](#8-база-данных-json)
-9. [Состояния FSM](#9-состояния-fsm)
-10. [API функций](#10-api-функций)
-11. [Команды бота](#11-команды-бота)
-12. [Система модерации](#12-система-модерации)
-13. [Диаграммы и схемы](#13-диаграммы-и-схемы)
-14. [Тестирование](#14-тестирование)
-15. [Деплой](#15-деплой)
-16. [Возможные улучшения](#16-возможные-улучшения)
-17. [FAQ и решение проблем](#17-faq-и-решение-проблем)
-
----
-
-# 1. Общее описание
-
-## 1.1 Назначение
-
-**Valentine Bot** — Telegram бот для анонимной и открытой отправки валентинок между студентами колледжа IThub ко Дню всех влюблённых.
-
-## 1.2 Основные функции
+Основные функции
 
 | Функция | Описание |
 |---------|----------|
@@ -44,13 +13,6 @@
 | 🚫 Модерация | Фильтр нежелательных слов с логированием нарушений |
 | 📊 Статистика | Статистика для администраторов |
 
-## 1.3 Целевая аудитория
-
-- Студенты колледжа IThub
-- Возраст: 16-25 лет
-- Ожидаемая нагрузка: 100-500 пользователей
-
----
 
 # 2. Технологии и зависимости
 
@@ -70,15 +32,6 @@ aiohttp>=3.8.0
 pydantic>=2.0.0
 ```
 
-## 2.3 Системные требования
-
-- **ОС:** Windows / Linux / macOS
-- **Python:** 3.10 или выше
-- **RAM:** минимум 256 MB
-- **Диск:** минимум 100 MB
-
----
-
 # 3. Структура проекта
 
 ```
@@ -90,6 +43,10 @@ valentine_bot/
 ├── moderation.py        # Система модерации и логирования
 ├── bad_words.py         # Список запрещённых слов
 │
+├── db/                # База данных
+│   ├── base.py        # База данных
+├── handlers/                # Обработчик
+│   ├── custom.py        # Обработка запросов бота
 ├── data/                # Директория для данных (опционально)
 │   ├── valentines.json  # База валентинок
 │   ├── users.json       # База пользователей
@@ -105,27 +62,7 @@ valentine_bot/
 
 # 4. Установка и настройка
 
-## 4.1 Клонирование и установка
-
-```bash
-# Клонирование репозитория
-git clone https://github.com/your-repo/valentine-bot.git
-cd valentine-bot
-
-# Создание виртуального окружения
-python -m venv venv
-
-# Активация (Windows)
-venv\Scripts\activate
-
-# Активация (Linux/macOS)
-source venv/bin/activate
-
-# Установка зависимостей
-pip install -r requirements.txt
-```
-
-## 4.2 Создание бота в Telegram
+Создание бота в Telegram
 
 1. Откройте [@BotFather](https://t.me/BotFather) в Telegram
 2. Отправьте команду `/newbot`
@@ -1009,159 +946,12 @@ pip install -r requirements.txt
 nano config.py
 ```
 
-### Шаг 3: Создание systemd сервиса
 
-```bash
-sudo nano /etc/systemd/system/valentine-bot.service
-```
+## Деплой через Docker
 
-Содержимое файла:
+### Откройте файл ИНСТРУКЦИЯ
 
-```ini
-[Unit]
-Description=Valentine Telegram Bot
-After=network.target
-
-[Service]
-Type=simple
-User=botuser
-WorkingDirectory=/home/botuser/valentine-bot
-ExecStart=/home/botuser/valentine-bot/venv/bin/python main.py
-Restart=always
-RestartSec=10
-
-[Install]
-WantedBy=multi-user.target
-```
-
-### Шаг 4: Запуск сервиса
-
-```bash
-# Перезагрузка systemd
-sudo systemctl daemon-reload
-
-# Запуск бота
-sudo systemctl start valentine-bot
-
-# Автозапуск при перезагрузке
-sudo systemctl enable valentine-bot
-
-# Проверка статуса
-sudo systemctl status valentine-bot
-
-# Просмотр логов
-sudo journalctl -u valentine-bot -f
-```
-
-## 15.2 Деплой через Docker
-
-### Dockerfile
-
-```dockerfile
-FROM python:3.10-slim
-
-WORKDIR /app
-
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
-
-COPY . .
-
-CMD ["python", "main.py"]
-```
-
-### docker-compose.yml
-
-```yaml
-version: '3.8'
-
-services:
-  bot:
-    build: .
-    container_name: valentine-bot
-    restart: always
-    volumes:
-      - ./data:/app/data
-    environment:
-      - BOT_TOKEN=${BOT_TOKEN}
-```
-
-### Запуск
-
-```bash
-# Сборка и запуск
-docker-compose up -d
-
-# Просмотр логов
-docker-compose logs -f
-```
-
----
-
-# 16. Возможные улучшения
-
-## 16.1 Приоритет: Высокий 🔴
-
-| Улучшение | Описание | Сложность |
-|-----------|----------|-----------|
-| Блокировка пользователей | Возможность забанить нарушителей | Средняя |
-| База данных | Переход с JSON на SQLite/PostgreSQL | Высокая |
-| Резервное копирование | Автоматический бэкап данных | Низкая |
-
-## 16.2 Приоритет: Средний 🟡
-
-| Улучшение | Описание | Сложность |
-|-----------|----------|-----------|
-| Картинки | Прикрепление изображений к валентинкам | Средняя |
-| Шаблоны | Готовые шаблоны валентинок | Низкая |
-| Рейтинг | Топ популярных получателей | Низкая |
-| Поиск | Поиск пользователя по имени | Средняя |
-
-## 16.3 Приоритет: Низкий 🟢
-
-| Улучшение | Описание | Сложность |
-|-----------|----------|-----------|
-| Веб-панель | Админ-панель через веб | Высокая |
-| Аналитика | Графики и статистика | Средняя |
-| Локализация | Поддержка нескольких языков | Средняя |
-| Таймер | Автоудаление валентинок после праздника | Низкая |
-
-## 16.4 Примеры реализации
-
-### Блокировка пользователей
-
-```python
-# В config.py добавить:
-BANNED_USERS_FILE = "banned_users.json"
-
-# В handlers.py добавить:
-def is_user_banned(user_id: int) -> bool:
-    banned = load_json(config.BANNED_USERS_FILE)
-    return str(user_id) in banned
-
-def ban_user(user_id: int, reason: str, admin_id: int):
-    banned = load_json(config.BANNED_USERS_FILE)
-    banned[str(user_id)] = {
-        "reason": reason,
-        "banned_at": datetime.now().isoformat(),
-        "banned_by": admin_id
-    }
-    save_json(config.BANNED_USERS_FILE, banned)
-
-# Добавить проверку в начало каждого хендлера:
-@router.message(F.text == "💌 Отправить валентинку")
-async def start_send_valentine(message: types.Message, state: FSMContext):
-    if is_user_banned(message.from_user.id):
-        await message.answer("⛔ Вы заблокированы.")
-        return
-    # ... остальной код
-```
-
----
-
-# 17. FAQ и решение проблем
-
-## 17.1 Частые проблемы
+Частые проблемы
 
 ### Проблема: Бот не отвечает
 
