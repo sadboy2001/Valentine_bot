@@ -1,0 +1,55 @@
+{
+  "aburyachenko": [
+    {
+      "from": "elf_trader",
+      "from_id": 108756457,
+      "message": "Ты лучший!",
+      "is_anonymous": false,
+      "is_read": true
+    },
+    {
+      "from": "Аноним 🎭",
+      "from_id": null,
+      "message": "С днём увольнения Маца",
+      "is_anonymous": true,
+      "is_read": true
+    }
+  ],
+  "ivglfl": [
+    {
+      "from": "Аноним 🎭",
+      "from_id": null,
+      "message": "тест",
+      "is_anonymous": true,
+      "is_read": true
+    },
+    {
+      "from": "Аноним 🎭",
+      "from_id": null,
+      "message": "Camry бомба!",
+      "is_anonymous": true,
+      "is_read": true,
+      "sent_at": "2026-02-06T13:20:08.748346"
+    }
+  ],
+  "showman_av": [
+    {
+      "from": "Аноним 🎭",
+      "from_id": null,
+      "message": "Проверка связи",
+      "is_anonymous": true,
+      "is_read": true,
+      "sent_at": "2026-02-06T13:46:24.940789"
+    }
+  ],
+  "miablema": [
+    {
+      "from": "Аноним 🎭",
+      "from_id": null,
+      "message": "Ты мой подснежник, в эту холодную зиму❤️",
+      "is_anonymous": true,
+      "is_read": true,
+      "sent_at": "2026-02-06T13:46:44.631856"
+    }
+  ]
+}

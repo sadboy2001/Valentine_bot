@@ -1,0 +1,17 @@
+import os
+
+from dotenv import load_dotenv
+
+load_dotenv()
+
+BOT_TOKEN = os.environ.get('BOT_TOKEN')
+ADMIN_ID = os.environ.get('ADMIN_ID')
+
+EMAIL_HOST = os.environ.get('EMAIL_HOST')
+EMAIL_PORT = os.environ.get('EMAIL_PORT')
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+EMAIL_GOOGLE_APP_PASSWORD = os.environ.get('EMAIL_GOOGLE_APP_PASSWORD')
+
+# Настройки уведомлений
+NOTIFY_ADMINS_ON_VIOLATION = True  # Отправлять ли уведомления админам

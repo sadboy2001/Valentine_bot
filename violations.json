@@ -1,0 +1,54 @@
+{
+  "violations": [
+    {
+      "id": 1,
+      "timestamp": "2026-02-06T14:56:11.176065",
+      "user_id": 108756457,
+      "username": "elf_trader",
+      "first_name": "Gairat",
+      "recipient": "ivglfl",
+      "message": "Ты дурак!",
+      "bad_word": "дура"
+    },
+    {
+      "id": 2,
+      "timestamp": "2026-02-06T15:03:15.363860",
+      "user_id": 108756457,
+      "username": "elf_trader",
+      "first_name": "Gairat",
+      "recipient": "ivglfl",
+      "message": "Ты дурак!",
+      "bad_word": "дура"
+    },
+    {
+      "id": 3,
+      "timestamp": "2026-02-06T15:05:05.364730",
+      "user_id": 108756457,
+      "username": "elf_trader",
+      "first_name": "Gairat",
+      "recipient": "ivglfl",
+      "message": "Ты дурак!",
+      "bad_word": "дура"
+    },
+    {
+      "id": 4,
+      "timestamp": "2026-02-06T15:05:33.165324",
+      "user_id": 108756457,
+      "username": "elf_trader",
+      "first_name": "Gairat",
+      "recipient": "ivglfl",
+      "message": "Ты дурак!",
+      "bad_word": "дура"
+    }
+  ],
+  "stats": {
+    "108756457": {
+      "username": "elf_trader",
+      "first_name": "Gairat",
+      "count": 4,
+      "words": [
+        "дура"
+      ]
+    }
+  }
+}
